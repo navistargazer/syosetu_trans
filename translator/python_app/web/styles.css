@@ -1,0 +1,412 @@
+:root {
+  --bg: #f5f6f1;
+  --panel: #ffffff;
+  --panel-soft: #fbfbf7;
+  --reader: #fffef9;
+  --border: #d9ded6;
+  --border-soft: #e6e2d8;
+  --text: #1d2430;
+  --muted: #68717e;
+  --label: #3d4652;
+  --source: rgba(75, 81, 72, 0.58);
+  --accent: #176b58;
+  --button: #e1e5dd;
+  --button-text: #1f2933;
+  color: var(--text);
+  background: var(--bg);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+:root[data-theme="dark"] {
+  --bg: #161812;
+  --panel: #20231b;
+  --panel-soft: #1d2018;
+  --reader: #191b15;
+  --border: #3a3f31;
+  --border-soft: #34392c;
+  --text: #eceadd;
+  --muted: #a8ac9d;
+  --label: #d7d9cb;
+  --source: rgba(210, 213, 196, 0.52);
+  --accent: #6bb69f;
+  --button: #34392c;
+  --button-text: #eceadd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.appShell {
+  min-height: 100vh;
+  padding: 28px;
+}
+
+.topBar {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin: 0 auto 20px;
+  max-width: 1440px;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(1.7rem, 4vw, 2.7rem);
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+.actions,
+.inlineControl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.actions {
+  justify-content: flex-end;
+}
+
+.inlineControl {
+  align-items: center;
+}
+
+.inlineControl input {
+  flex: 1 1 160px;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.primaryButton {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.secondaryButton {
+  background: var(--button);
+  color: var(--button-text);
+}
+
+.compact {
+  min-height: 32px;
+  padding: 0 12px;
+}
+
+.workspace {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+.settingsPane,
+.logPane {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.settingsPane {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+label span,
+.panelHeader span {
+  color: var(--label);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+input,
+select,
+textarea {
+  background: var(--panel-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  outline: none;
+  padding: 10px 11px;
+  width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(23, 107, 88, 0.14);
+}
+
+textarea {
+  line-height: 1.65;
+  min-height: 260px;
+  resize: vertical;
+}
+
+.promptBox {
+  min-height: 130px;
+}
+
+.noteBox {
+  min-height: 92px;
+}
+
+.segmentedControl {
+  background: var(--panel-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4px;
+}
+
+.segmentedControl button {
+  background: transparent;
+  color: var(--muted);
+  min-height: 34px;
+}
+
+.segmentedControl button.active {
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+}
+
+.editorGrid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(280px, 0.86fr) minmax(360px, 1.14fr);
+  min-height: 660px;
+}
+
+.textPanel,
+.readerPanel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+}
+
+.textPanel textarea {
+  flex: 1;
+  min-height: 560px;
+}
+
+.readerPanel {
+  background: var(--panel-soft);
+}
+
+.translationReader {
+  background: var(--reader);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  flex: 1;
+  min-height: 560px;
+  overflow: auto;
+  padding: 26px clamp(18px, 3vw, 42px);
+}
+
+.readerEmpty {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.readerChunk {
+  display: grid;
+  gap: 18px;
+}
+
+.readerChunk + .readerChunk {
+  border-top: 1px solid var(--border-soft);
+  margin-top: 26px;
+  padding-top: 26px;
+}
+
+.readerPair {
+  border-left: 3px solid transparent;
+  display: grid;
+  gap: 6px;
+  padding: 0 0 0 14px;
+}
+
+.translationReader.parallel .readerPair {
+  align-items: start;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 20px;
+}
+
+.readerPair:hover {
+  border-left-color: var(--accent);
+}
+
+.sourceLine {
+  color: var(--source);
+  font-family: "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
+.translatedLine {
+  color: var(--text);
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.95;
+  white-space: pre-wrap;
+}
+
+.panelHeader,
+.progressHeader {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.panelHeader {
+  margin-bottom: 7px;
+}
+
+.progressBox {
+  background: var(--panel-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+}
+
+.progressBox p,
+.emptyLog {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.progressTrack {
+  background: var(--border);
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progressFill {
+  background: var(--accent);
+  height: 100%;
+  transition: width 160ms ease;
+}
+
+.logPane {
+  margin: 18px auto 0;
+  max-width: 1440px;
+}
+
+.logPane div {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  max-height: 180px;
+  overflow: auto;
+}
+
+.logPane p {
+  color: var(--label);
+  font-size: 0.9rem;
+}
+
+.logPane span {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  margin-right: 8px;
+}
+
+@media (max-width: 1080px) {
+  .appShell {
+    padding: 18px;
+  }
+
+  .topBar,
+  .workspace,
+  .editorGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .topBar {
+    align-items: stretch;
+    display: grid;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .actions button {
+    flex: 1;
+  }
+
+  .textPanel textarea,
+  .translationReader {
+    min-height: 380px;
+  }
+
+  .translationReader.parallel .readerPair {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}

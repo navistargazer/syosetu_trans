@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python Novel Translator</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="appShell">
+      <section class="topBar">
+        <div>
+          <p class="eyebrow">Python orchestration MVP</p>
+          <h1>웹소설 번역 파이프라인</h1>
+        </div>
+        <div class="actions">
+          <button class="secondaryButton" id="themeButton" type="button">다크</button>
+          <button class="secondaryButton" id="resetButton" type="button">설정 초기화</button>
+          <button class="primaryButton" id="translateButton" type="button">번역 실행</button>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside class="settingsPane">
+          <label>
+            <span>Gemini API Key</span>
+            <input id="apiKey" type="password" placeholder="AIza..." />
+          </label>
+
+          <label>
+            <span>URL 본문 가져오기</span>
+            <div class="inlineControl">
+              <input id="sourceUrl" placeholder="https://..." />
+              <button class="secondaryButton compact" id="fetchUrlButton" type="button">가져오기</button>
+            </div>
+          </label>
+
+          <label>
+            <span>Model</span>
+            <select id="model">
+              <option value="gemini-3-flash-preview">gemini-3-flash-preview</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Target Language</span>
+            <input id="targetLanguage" />
+          </label>
+
+          <label>
+            <span>Chunk Size</span>
+            <input id="chunkSize" type="number" min="1000" max="12000" step="500" />
+          </label>
+
+          <label>
+            <span>System Prompt</span>
+            <textarea class="promptBox" id="systemPrompt"></textarea>
+          </label>
+
+          <label>
+            <span>번역 노트</span>
+            <textarea class="noteBox" id="translationNote" placeholder="작품 분위기, 말투, 번역 방향을 적어주세요."></textarea>
+          </label>
+
+          <label>
+            <span>고유명사 사전</span>
+            <textarea class="noteBox" id="glossary" placeholder="例: アリス = 앨리스&#10;魔導具 = 마도구"></textarea>
+          </label>
+
+          <div class="segmentedControl" role="group" aria-label="보기 모드">
+            <button class="active" id="interleavedButton" type="button">교차</button>
+            <button id="parallelButton" type="button">병렬</button>
+          </div>
+
+          <div class="progressBox">
+            <div class="progressHeader">
+              <strong id="statusLabel">대기</strong>
+              <span id="percentage">0%</span>
+            </div>
+            <div class="progressTrack">
+              <div class="progressFill" id="progressFill"></div>
+            </div>
+            <p><span id="currentChunk">0</span> / <span id="totalChunks">0</span> chunks</p>
+          </div>
+        </aside>
+
+        <section class="editorGrid">
+          <label class="textPanel">
+            <span>원문 입력</span>
+            <textarea id="sourceText"></textarea>
+          </label>
+
+          <section class="readerPanel">
+            <div class="panelHeader">
+              <span>원문 / 번역문</span>
+              <button class="secondaryButton compact" id="downloadButton" type="button" disabled>TXT 저장</button>
+            </div>
+            <div class="translationReader interleaved" id="translationReader">
+              <p class="readerEmpty">번역 결과가 여기에 한 줄씩 표시됩니다.</p>
+            </div>
+          </section>
+        </section>
+      </section>
+
+      <section class="logPane">
+        <h2>작업 로그</h2>
+        <div id="logs">
+          <p class="emptyLog">아직 실행된 작업이 없습니다.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

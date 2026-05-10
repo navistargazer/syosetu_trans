@@ -1,2 +1,3 @@
 # syosetu_trans
-translate syosetu
+cd translator
+python -m python_app.server
